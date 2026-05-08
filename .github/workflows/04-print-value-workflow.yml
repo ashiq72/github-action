@@ -1,31 +1,31 @@
-name: Value pass workflow
+name: Value Pass Workflow
 
 on:
   workflow_dispatch:
     inputs:
-      value:
-        description: 'Value to print'
+      name:
+        description: 'Enter your name'
         required: true
-        default: 'Hello, World!'
+        default: 'Unnamed'
 
 jobs:
-  print-value-job:
+  get-value-workflow-job:
     runs-on: ubuntu-latest
     outputs:
-      greetings_message: ${{ steps.generate_message.outputs.greetings_message }}
+      greetings_message: ${{ steps.generate-message.outputs.message }}
 
     steps:
-      - name: Print the value
-        run: echo "The value is: ${{ github.event.inputs.value }}"
+      - name: Generate Greetings Message
+        id: generate-message
+        run: |
+          echo "message=Hello, ${{ github.event.inputs.name }}!" >> $GITHUB_OUTPUT
 
-      - name: Generate greeting message
-        id: generate_message
-        run: echo "greetings_message=Hello, ${{ github.event.inputs.value }}!" >> $GITHUB_OUTPUT
-
-  print_value_job:
-    needs: print-value-job
+        
+  print-value-workflow-job:
     runs-on: ubuntu-latest
+    needs: [get-value-workflow-job]
 
     steps:
-      - name: Print the greeting message
-        run: echo "The greeting message is: ${{ needs.print-value-job.outputs.greetings_message }}"
+      - name: Print Greetings Message
+        run: |
+          echo "${{ needs.get-value-workflow-job.outputs.greetings_message }}"
