@@ -1,9 +1,10 @@
-name: First Workflow
+name: manual Workflow
 on: workflow_dispatch
 
 jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - name: first step
-        run: echo "This is the first step of the first workflow"
+      - name: manual step
+        run: echo "Hello, world!"
+https://github.com/ashiq72/github-action/actions/workflows/02-manual-workflow.yml
