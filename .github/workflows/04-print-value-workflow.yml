@@ -22,7 +22,7 @@ jobs:
         id: generate_message
         run: echo "greetings_message=Hello, ${{ github.event.inputs.value }}!" >> $GITHUB_OUTPUT
 
-  print_value_job:   # ✅ new job (correct place)
+  print_value_job:
     needs: print-value-job
     runs-on: ubuntu-latest
 
