@@ -1,0 +1,12 @@
+name: Conditoanl Workflow
+on:
+  push:
+    paths:
+      - 'backend/**' # Trigger the workflow only when files in the backend directory are changed
+
+jobs:
+  conditional-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conditional step
+        run: echo "This workflow runs only when files in the backend directory are changed"

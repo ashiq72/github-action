@@ -1,5 +1,12 @@
 name: First Workflow
-on: [push]
+# on: [push] # Trigger the workflow on push to any branch
+# on:
+#   push:
+#     branches: [ main ] # Trigger the workflow on push to the main branch
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Trigger the workflow every day at midnight
 
 jobs:
   first-job:
@@ -7,3 +14,9 @@ jobs:
     steps:
       - name: first step
         run: echo "This is the first step of the first workflow"
+  second-job:
+    runs-on: ubuntu-latest
+    needs: first-job # This ensures that the second job runs only after the first job has completed successfully
+    steps:
+      - name: second step
+        run: echo "This is the second step of the first workflow"
