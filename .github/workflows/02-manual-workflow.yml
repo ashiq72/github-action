@@ -7,4 +7,3 @@ jobs:
     steps:
       - name: manual step
         run: echo "Hello, world!"
-https://github.com/ashiq72/github-action/actions/workflows/02-manual-workflow.yml
